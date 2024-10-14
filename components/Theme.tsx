@@ -10,7 +10,7 @@ const Theme = () => {
   return (
     <ActionIcon
       onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
-      variant="transparent"
+      variant="default"
       size="xl"
       aria-label="Toggle color scheme"
     >

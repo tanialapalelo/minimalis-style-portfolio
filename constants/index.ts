@@ -1,5 +1,6 @@
 export const navigationOption = [
-    {value: 'About', icon: ''},
-    {value: 'Contact Me', icon: ''},
+    {value: 'Home', description: 'Welcome to my homepage', icon: '', path: '/'},
+    {value: 'About', description: 'Get to know me', icon: '', path: '/about'},
+    {value: 'Contact Me', description: 'Don\'t hesitate to contact me', icon: '', path: '/contact'},
     
 ]

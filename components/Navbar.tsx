@@ -1,16 +1,19 @@
 "use client";
 
-import { AppShell, Burger, Group, Skeleton } from "@mantine/core";
+import { AppShell, Burger, Group, NavLink, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Image from "next/image";
 
-import React from "react";
+import { useState } from "react";
 import Theme from "./Theme";
-import Link from "next/link";
 import { navigationOption } from "@/constants";
+import { usePathname } from "next/navigation";
 
-const Navbar = () => {
+const Navbar = ({children}) => {
   const [opened, { toggle }] = useDisclosure();
+  const [active, setActive] = useState(0);
+  const pathname = usePathname();
+
   return (
     <AppShell
       header={{ height: 60 }}
@@ -32,7 +35,7 @@ const Navbar = () => {
               width={30}
               height={30}
             />
-            <p className="font-bold ml-4 text-lg">Tania</p>
+            <p className="font-bold ml-4 text-xl font-handlee my-auto">Tania</p>
           </div>
 
           <Theme />
@@ -42,12 +45,21 @@ const Navbar = () => {
       <AppShell.Navbar p="md">
         {navigationOption
           .map((navOption, index) => (
-            // <Skeleton key={index} h={28} mt="sm" animate={false} />
-            <Link href="" key={index}>{navOption.value}</Link>
+            <NavLink
+              href={navOption.path}
+              key={navOption.value}
+              active={navOption.path === pathname}
+              label={navOption.value}
+              description={navOption.description}
+              onClick={() => setActive(index)}
+              color="dark"
+              variant="filled"
+
+            />
           ))}
       </AppShell.Navbar>
 
-      <AppShell.Main>Main</AppShell.Main>
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 };
