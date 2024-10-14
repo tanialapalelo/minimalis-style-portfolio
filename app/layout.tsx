@@ -3,7 +3,14 @@ import "./globals.css";
 import '@mantine/core/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { Handlee } from "next/font/google";
 
+
+const handlee = Handlee({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-handlee",
+});
 
 export const metadata: Metadata = {
   title: "Tania Portfolio",
@@ -20,7 +27,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
+      <body className={`${handlee.variable} `}>
         <MantineProvider>{children}</MantineProvider>
       </body>
     </html>

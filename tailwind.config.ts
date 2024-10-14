@@ -16,6 +16,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        handlee: ["var(--font-handlee)"],
+      },
     },
   },
   plugins: [
