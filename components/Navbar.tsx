@@ -1,6 +1,6 @@
 "use client";
 
-import { AppShell, Burger, Group, NavLink, Skeleton } from "@mantine/core";
+import { AppShell, Burger, Group, NavLink, useComputedColorScheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Image from "next/image";
 
@@ -14,6 +14,7 @@ const Navbar = ({children}) => {
   const [active, setActive] = useState(0);
   const pathname = usePathname();
 
+  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
   return (
     <AppShell
       header={{ height: 60 }}
@@ -59,7 +60,7 @@ const Navbar = ({children}) => {
           ))}
       </AppShell.Navbar>
 
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main className={`${computedColorScheme === 'light' ? 'bg-dot-black/[0.5]' : 'bg-dot-white/[0.5]' }`}>{children}</AppShell.Main>
     </AppShell>
   );
 };

@@ -5,6 +5,7 @@ import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColo
  
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -19,6 +20,9 @@ const config: Config = {
       fontFamily: {
         handlee: ["var(--font-handlee)"],
       },
+      rotate: {
+        '80': '80deg',
+      }
     },
   },
   plugins: [
