@@ -8,6 +8,7 @@ import { useState } from "react";
 import Theme from "./Theme";
 import { navigationOption } from "@/constants";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = ({children}) => {
   const [opened, { toggle }] = useDisclosure();
@@ -29,7 +30,7 @@ const Navbar = ({children}) => {
         <Group h="100%" px="md" justify="space-between">
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
 
-          <div className="flex">
+          <Link href="/" className="flex">
             <Image
               src="/assets/icons/logo.svg"
               alt="logo"
@@ -37,7 +38,7 @@ const Navbar = ({children}) => {
               height={30}
             />
             <p className="font-bold ml-4 text-xl font-handlee my-auto">Tania</p>
-          </div>
+          </Link>
 
           <Theme />
         </Group>

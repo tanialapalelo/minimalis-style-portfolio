@@ -5,10 +5,12 @@ import {
   Button,
   Grid,
   Text,
+  Title,
 } from "@mantine/core";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { specialties } from "@/constants";
+import { Highlight } from "@/components/ui/hero-highlight";
 
 export default function Home() {
   const imageVariants = {
@@ -36,13 +38,10 @@ export default function Home() {
         <Text className="font-handlee">Tania</Text>
       </div>
       <Grid className="gap-9">
-        <Grid.Col span={8} className="flex flex-col">
-          <TextGenerateEffect
-            duration={2}
-            words="I design top notch websites"
-          />
+        <Grid.Col span={7} className="flex flex-col">
+          <Title order={1}>I design <Highlight>top notch websites</Highlight></Title>
         </Grid.Col>
-        <Grid.Col span={4} mt={"md"}>
+        <Grid.Col span={5} mt={"md"} className="">
           <Text>
             I&apos;ll design your website and will develop to land it on
             internet using No-code.
@@ -50,7 +49,7 @@ export default function Home() {
           <Button variant="filled" color="rgba(0, 0, 0, 1)" mt={"xs"}>Hire me</Button>
         </Grid.Col>
       </Grid>
-      <Text>What I do?</Text>
+      <Text className="font-handlee">What I do?</Text>
       <Image
           src="/assets/icons/arrow.svg"
           alt="arrow"
