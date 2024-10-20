@@ -1,16 +1,17 @@
 "use client";
 
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { Button, Grid, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { specialties } from "@/constants";
+import { featured, specialties } from "@/constants";
 import { Highlight } from "@/components/ui/hero-highlight";
 import { cn } from "@/lib/utils";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { Contact } from "@/components/Contact";
+import WorkExperience from "@/components/WorkExperience";
 
 export default function Home() {
-  const imageVariants = {
+  const imageVariants = { 
     whileHover: {
       scale: 1.1,
       rotate: 0,
@@ -22,6 +23,7 @@ export default function Home() {
       zIndex: 100,
     },
   };
+
   return (
     <div className="mx-7">
       <div className="flex">
@@ -37,7 +39,7 @@ export default function Home() {
       <Grid className="gap-9">
         <Grid.Col span={{ base: 12, lg: 7 }} className="flex flex-col">
           <Title order={1}>
-            I design <Highlight>top notch websites</Highlight>
+            I build <Highlight>top notch websites</Highlight>
           </Title>
         </Grid.Col>
         <Grid.Col span={{ base: 12, lg: 5 }} mt={"md"} className="">
@@ -53,6 +55,7 @@ export default function Home() {
       <Text
         className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
         mt={"xl"}
+        fw={700}
       >
         What I do?
       </Text>
@@ -86,35 +89,92 @@ export default function Home() {
           );
         })}
       </div>
-      <Text
-        className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
-        mt={"xl"}
-      >
-        Featured Projects
-      </Text>
-      <Image
-        src="/assets/icons/arrow.svg"
-        alt="arrow"
-        width={50}
-        height={50}
-        className="-rotate-80 my-8"
-      />
-      <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
-      {[5].map((item) => {
-          return (
-            <BentoGridItem
-              key={item} // Always include a unique key when mapping over elements
-              title="tes"
-              description="tes"
-              header="tes"
-              className={cn("[&>p:text-lg] border-2")}
-              icon="tes"
+      <div className="flex mt-12">
+        <Grid>
+          <Grid.Col span={{ base: 12, md: 4, lg: 4 }}>
+            <Text
+              className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
+              mt={"xl"}
+              fw={700}
+            >
+              Featured Projects
+            </Text>
+            <Image
+              src="/assets/icons/arrow.svg"
+              alt="arrow"
+              width={50}
+              height={50}
+              className="-rotate-80 my-8"
             />
-          );
-        })}
+            <Text>Have designed morethan 20 projects</Text>
+          </Grid.Col>
+          <Grid.Col span={{ base: 12, md: 8, lg: 8 }}>
+            <BentoGrid className="max-w-4xl mx-auto">
+              {featured.map((item) => {
+                return (
+                  <BentoGridItem
+                    key={item.id} // Always include a unique key when mapping over elements
+                    title={item.name}
+                    header={<Image src={item.image} alt={item.name} width={250} height={250} className="object-cover w-full" />}
+                    className={cn("[&>p:text-lg] border-2 border-black")}
+                  />
+                );
+              })}
+            </BentoGrid>
+          </Grid.Col>
+        </Grid>
+      </div>
 
-        
-    </BentoGrid>
+      <div className="flex mt-12">
+        <Grid>
+          <Grid.Col span={{ base: 12, md: 4, lg: 4 }}>
+            <Text
+              className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
+              mt={"xl"}
+              fw={700}
+            >
+              Work Experience
+            </Text>
+            <Image
+              src="/assets/icons/arrow.svg"
+              alt="arrow"
+              width={50}
+              height={50}
+              className="-rotate-80 my-8"
+            />
+            <Text>Have designed morethan 20 projects</Text>
+          </Grid.Col>
+          <Grid.Col span={{ base: 12, md: 8, lg: 8 }}>
+            <WorkExperience/>
+          </Grid.Col>
+        </Grid>
+      </div>
+
+
+      <div className="flex mt-12 w-full">
+        <Grid>
+          <Grid.Col span={{ base: 12, md: 4, lg: 4 }}>
+            <Text
+              className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
+              mt={"xl"}
+              fw={700}
+            >
+              Contact here
+            </Text>
+            <Image
+              src="/assets/icons/arrow.svg"
+              alt="arrow"
+              width={50}
+              height={50}
+              className="-rotate-80 my-8"
+            />
+            <Text>Have a project idea? just say me Hi.</Text>
+          </Grid.Col>
+          <Grid.Col span={{ base: 12, md: 8, lg: 8 }}>
+            <Contact />
+          </Grid.Col>
+        </Grid>
+      </div>
 
     </div>
   );
