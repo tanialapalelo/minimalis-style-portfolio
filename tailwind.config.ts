@@ -5,11 +5,16 @@ import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColo
  
 
 const config: Config = {
-  darkMode: "class",
+  darkMode: 'selector',
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  safelist: [ // specify a list of classes that'll always be included in the compiled CSS, avoid JIT (Just-In-Time) mode
+    // Use regex patterns to safelist classes with bg- and border-
+    { pattern: /^bg-/ }, 
+    { pattern: /^border-/ },
   ],
   theme: {
     extend: {
