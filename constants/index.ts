@@ -16,6 +16,7 @@ export const featured = [
     {id:2, name: 'Color system for app', image: '/assets/images/color-system.png'},
     {id:3, name: 'Onboarding screen process', image: '/assets/images/onboarding.png'},
     {id:4, name: 'Finance Landing page', image: '/assets/images/finance-landing-page.png'},
+    {id:4, name: 'Jewelry Website', image: '/assets/images/finance-landing-page.png'},
 ]
 
 export const links = [

@@ -32,7 +32,7 @@ export function Contact() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <SimpleGrid cols={{ base: 1, sm: 2 }} mt="xl">
+      <SimpleGrid cols={{ base: 1, sm: 2 }}>
         <TextInput
           label="Name"
           placeholder="Your name"

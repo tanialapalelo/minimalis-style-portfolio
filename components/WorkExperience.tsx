@@ -4,7 +4,7 @@ import { Timeline } from "@/components/ui/timeline";
 const WorkExperience = () => {
     const data = [
         {
-            title: <div className="p-10 text-center border-2 boder-black w-1/2 md:w-full bg-yellow-200">1</div>,
+            title: <div className="p-10 text-center border-2 boder-black w-full h-full md:w-full bg-yellow-200">1</div>,
             content: (
                 <div>
                     <p className="">
@@ -16,7 +16,7 @@ const WorkExperience = () => {
             ),
         },
         {
-            title: <div className="p-10 text-center border-2 boder-black w-1/2 md:w-full bg-pink-200">2</div>,
+            title: <div className="p-10 text-center border-2 boder-black w-full h-full md:w-full bg-purple-200">2</div>,
             content: (
                 <div>
                     <p className="">
@@ -28,7 +28,7 @@ const WorkExperience = () => {
             ),
         },
         {
-            title: <div className="p-10 text-center border-2 boder-black w-1/2 md:w-full bg-green-200">3</div>,
+            title: <div className="p-10 text-center border-2 boder-black w-full h-full md:w-full bg-green-200">3</div>,
             content: (
                 <div>
                     <p className="">
@@ -41,9 +41,9 @@ const WorkExperience = () => {
         },
     ];
     return (
-        // <div className="relative p-8 my-10 mx-auto max-w-3xl">
+        <div className="relative my-10 mx-auto max-w-3xl">
             <Timeline data={data} />
-        // </div>
+        </div>
     )
 }
 

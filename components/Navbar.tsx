@@ -78,7 +78,6 @@ const Navbar = ({ children }) => {
       {/* <AppShell.Footer>
         <div className={classes.footer}>
           <Container className={classes.inner}>
-            <p>tes</p>
             <Group className={classes.links}>{items}</Group>
           </Container>
         </div>

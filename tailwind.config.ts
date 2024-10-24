@@ -27,6 +27,8 @@ const config: Config = {
       },
       rotate: {
         '80': '80deg',
+        '70': '70deg',
+        '100': '100deg',
       }
     },
   },

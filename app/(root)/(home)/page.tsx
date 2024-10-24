@@ -11,7 +11,7 @@ import { Contact } from "@/components/Contact";
 import WorkExperience from "@/components/WorkExperience";
 
 export default function Home() {
-  const imageVariants = { 
+  const imageVariants = {
     whileHover: {
       scale: 1.1,
       rotate: 0,
@@ -52,21 +52,19 @@ export default function Home() {
           </Button>
         </Grid.Col>
       </Grid>
-      <Text
-        className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
-        mt={"xl"}
-        fw={700}
+      <p
+        className="font-handlee bg-pink-300 font-bold mt-7 text-black w-fit"
       >
         What I do?
-      </Text>
+      </p>
       <Image
         src="/assets/icons/arrow.svg"
         alt="arrow"
         width={50}
         height={50}
-        className="-rotate-80 my-8"
+        className="-rotate-100 my-8"
       />
-      <div className="flex">
+      <div className="flex flex-wrap justify-center">
         {specialties.map((specialty, idx) => {
           return (
             <motion.div
@@ -80,25 +78,24 @@ export default function Home() {
               className={`rounded-xl -mr-4 mt-4 p-1 border flex-shrink-0 overflow-hidden bg-${specialty.color}-500 border-${specialty.color}-200`}
             >
               <div
-                className={`rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0 bg-${specialty.color}-100`}
+                className={`rounded-lg h-72 w-72 object-cover flex-shrink-0 bg-${specialty.color}-100`}
               >
                 <Image src={specialty.icon} alt="icon" width={50} height={50} />
-                <Text size="xl" m={"lg"}>{specialty.value}</Text>
+                <Text size="xl" m={"lg"}>
+                  {specialty.value}
+                </Text>
               </div>
             </motion.div>
           );
         })}
       </div>
+
       <div className="flex mt-12">
         <Grid>
           <Grid.Col span={{ base: 12, md: 4, lg: 4 }}>
-            <Text
-              className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
-              mt={"xl"}
-              fw={700}
-            >
+            <p className="font-handlee bg-pink-300 font-bold mt-7 text-black w-fit">
               Featured Projects
-            </Text>
+            </p>
             <Image
               src="/assets/icons/arrow.svg"
               alt="arrow"
@@ -115,7 +112,15 @@ export default function Home() {
                   <BentoGridItem
                     key={item.id} // Always include a unique key when mapping over elements
                     title={item.name}
-                    header={<Image src={item.image} alt={item.name} width={250} height={250} className="object-cover w-full" />}
+                    header={
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={250}
+                        height={250}
+                        className="object-cover w-full"
+                      />
+                    }
                     className={cn("[&>p:text-lg] border-2 border-black")}
                   />
                 );
@@ -128,13 +133,13 @@ export default function Home() {
       <div className="flex mt-12">
         <Grid>
           <Grid.Col span={{ base: 12, md: 4, lg: 4 }}>
-            <Text
-              className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
+            <p
+              className="font-handlee bg-pink-300 font-bold mt-7 text-black w-fit"
               mt={"xl"}
               fw={700}
             >
               Work Experience
-            </Text>
+            </p>
             <Image
               src="/assets/icons/arrow.svg"
               alt="arrow"
@@ -145,22 +150,17 @@ export default function Home() {
             <Text>Have designed morethan 20 projects</Text>
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 8, lg: 8 }}>
-            <WorkExperience/>
+            <WorkExperience />
           </Grid.Col>
         </Grid>
       </div>
 
-
-      <div className="flex mt-12 w-full">
+      <div className="md:mt-12 w-full">
         <Grid>
           <Grid.Col span={{ base: 12, md: 4, lg: 4 }}>
-            <Text
-              className="font-handlee bg-pink-300 dark:bg-red-600 w-fit"
-              mt={"xl"}
-              fw={700}
-            >
+            <p className="font-handlee bg-pink-300 w-fit font-bold mt-7 text-black">
               Contact here
-            </Text>
+            </p>
             <Image
               src="/assets/icons/arrow.svg"
               alt="arrow"
@@ -170,12 +170,14 @@ export default function Home() {
             />
             <Text>Have a project idea? just say me Hi.</Text>
           </Grid.Col>
-          <Grid.Col span={{ base: 12, md: 8, lg: 8 }}>
+          <Grid.Col
+            span={{ base: 12, md: 8, lg: 8 }}
+            className="justify-center"
+          >
             <Contact />
           </Grid.Col>
         </Grid>
       </div>
-
     </div>
   );
 }
