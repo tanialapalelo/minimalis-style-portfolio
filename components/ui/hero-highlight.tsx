@@ -1,7 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useMantineColorScheme } from "@mantine/core";
 
 export const HeroHighlight = ({
   children,
@@ -67,6 +68,14 @@ export const Highlight = ({
   children: React.ReactNode;
   className?: string;
 }) => {
+  const { colorScheme } = useMantineColorScheme();
+  const [isDark, setIsDark] = useState(false);
+
+  // Set the theme after the component mounts to avoid mismatch between server-rendered and client-rendered content
+  useEffect(() => {
+    setIsDark(colorScheme === "dark");
+  }, [colorScheme]); // only render after the clien-side theme is determined
+
   return (
     <motion.span
       initial={{
@@ -86,7 +95,7 @@ export const Highlight = ({
         display: "inline",
       }}
       className={cn(
-        `relative inline-block pb-1 px-1 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500`,
+        `relative inline-block pb-1 px-1 rounded-lg bg-gradient-to-r ${isDark ? 'from-indigo-500 to-purple-500' : 'from-indigo-300 to-purple-300'}`,
         className
       )}
     >

@@ -42,7 +42,6 @@ export function Contact() {
          <Autocomplete
           data={data}
           onChange={handleChange}
-          // rightSection={loading ? <Loader size="1rem" /> : null}
           label="Email"
           placeholder="Your email"
         />

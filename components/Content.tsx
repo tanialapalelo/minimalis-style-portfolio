@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import classes from '@/lib/Footer.module.css'
 
-const Navbar = ({ children }) => {
+const Content = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const [active, setActive] = useState(0);
   const pathname = usePathname();
@@ -86,4 +86,4 @@ const Navbar = ({ children }) => {
   );
 };
 
-export default Navbar;
+export default Content;

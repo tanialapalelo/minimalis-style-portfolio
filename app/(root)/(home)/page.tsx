@@ -2,27 +2,15 @@
 
 import { Button, Grid, Text, Title } from "@mantine/core";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { featured, specialties } from "@/constants";
+import { featured } from "@/constants";
 import { Highlight } from "@/components/ui/hero-highlight";
 import { cn } from "@/lib/utils";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { Contact } from "@/components/Contact";
 import WorkExperience from "@/components/WorkExperience";
+import Specialties from "@/components/Specialties";
 
 export default function Home() {
-  const imageVariants = {
-    whileHover: {
-      scale: 1.1,
-      rotate: 0,
-      zIndex: 100,
-    },
-    whileTap: {
-      scale: 1.1,
-      rotate: 0,
-      zIndex: 100,
-    },
-  };
 
   return (
     <div className="mx-7">
@@ -34,7 +22,7 @@ export default function Home() {
           width={50}
           height={50}
         />
-        <Text className="font-handlee">Tania</Text>
+        <Text className="font-handlee" fw={"bold"} size="xl">Tania</Text>
       </div>
       <Grid className="gap-9">
         <Grid.Col span={{ base: 12, lg: 7 }} className="flex flex-col">
@@ -52,43 +40,8 @@ export default function Home() {
           </Button>
         </Grid.Col>
       </Grid>
-      <p
-        className="font-handlee bg-pink-300 font-bold mt-7 text-black w-fit"
-      >
-        What I do?
-      </p>
-      <Image
-        src="/assets/icons/arrow.svg"
-        alt="arrow"
-        width={50}
-        height={50}
-        className="-rotate-100 my-8"
-      />
-      <div className="flex flex-wrap justify-center">
-        {specialties.map((specialty, idx) => {
-          return (
-            <motion.div
-              variants={imageVariants}
-              key={"images-first" + idx}
-              style={{
-                rotate: Math.random() * 20 - 10,
-              }}
-              whileHover="whileHover"
-              whileTap="whileTap"
-              className={`rounded-xl -mr-4 mt-4 p-1 border flex-shrink-0 overflow-hidden bg-${specialty.color}-500 border-${specialty.color}-200`}
-            >
-              <div
-                className={`rounded-lg h-72 w-72 object-cover flex-shrink-0 bg-${specialty.color}-100`}
-              >
-                <Image src={specialty.icon} alt="icon" width={50} height={50} />
-                <Text size="xl" m={"lg"}>
-                  {specialty.value}
-                </Text>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
+
+      <Specialties/>
 
       <div className="flex mt-12">
         <Grid>

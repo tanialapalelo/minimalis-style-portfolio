@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Content from "@/components/Content";
 
 
 export default function Layout({
@@ -7,8 +7,6 @@ export default function Layout({
     children: React.ReactNode;
 }>) {
     return (
-        <main>
-            <Navbar>{children}</Navbar>
-        </main>
+        <Content>{children}</Content>
     );
 }
