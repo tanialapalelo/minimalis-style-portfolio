@@ -1,7 +1,11 @@
 export const navigationOption = [
     {value: 'Home', description: 'Welcome to my homepage', icon: '', path: '/'},
     {value: 'Cover Letter', description: 'Download my cover letter', icon: '', path: '/cv'},
-    
+]
+
+export const adminNavOption = [
+    {value: 'Home', description: 'Welcome to my admin homepage', icon: '', path: '/admin'},
+    {value: 'Projects', description: 'View all projects', icon: '', path: '/admin/projects'},
 ]
 
 export const specialties = [
@@ -16,7 +20,7 @@ export const featured = [
     {id:2, name: 'Color system for app', image: '/assets/images/color-system.png'},
     {id:3, name: 'Onboarding screen process', image: '/assets/images/onboarding.png'},
     {id:4, name: 'Finance Landing page', image: '/assets/images/finance-landing-page.png'},
-    {id:4, name: 'Jewelry Website', image: '/assets/images/finance-landing-page.png'},
+    {id:5, name: 'Jewelry Website', image: '/assets/images/finance-landing-page.png'},
 ]
 
 export const links = [
