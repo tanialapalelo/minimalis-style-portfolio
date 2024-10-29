@@ -13,7 +13,7 @@ const handlee = Handlee({
 });
 
 export const metadata: Metadata = {
-  title: "Tania Portfolio",
+  title: "Minimalis Portfolio",
   description: "Minimalis Portfolio by Tania",
 };
 
