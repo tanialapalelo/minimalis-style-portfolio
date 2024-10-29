@@ -1,5 +1,5 @@
 "use client";
-import { Text, Table } from "@mantine/core";
+import { Text, Table, Title } from "@mantine/core";
 import {
   IconCheckbox,
   IconEdit,
@@ -87,7 +87,8 @@ const Projects = () => {
   ));
   return (
     <div>
-      <Text mb={"md"}>List of Projects</Text>
+      <Title order={2} mb={"md"}>List of Projects</Title>
+
       <Table.ScrollContainer minWidth={500}>
         <Table striped highlightOnHover withTableBorder withColumnBorders>
             <Table.Thead>

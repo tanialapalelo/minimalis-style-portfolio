@@ -1,10 +1,11 @@
 import type { Config } from "tailwindcss";
+import { withUt } from "uploadthing/tw";
 
 import svgToDataUri from "mini-svg-data-uri";
 import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
  
 
-const config: Config = {
+const config: Config = withUt({
   darkMode: 'selector',
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -56,5 +57,5 @@ const config: Config = {
       );
     },
   ],
-};
+});
 export default config;
