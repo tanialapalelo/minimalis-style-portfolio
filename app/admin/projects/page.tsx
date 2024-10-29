@@ -1,12 +1,23 @@
 "use client";
-import { Text, Table, Title } from "@mantine/core";
+
+import DeleteModal from "@/components/ui/DeleteModal";
+import { Table, Title } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import {
   IconCheckbox,
   IconEdit,
-  IconRowRemove,
   IconSquareX,
 } from "@tabler/icons-react";
 import Link from "next/link";
+import { useState } from "react";
+
+interface ProjectProps {
+  id: number;
+  title: string;
+  description: number;
+  url: string;
+  is_featured: boolean;
+}
 
 const elements = [
   {
@@ -68,6 +79,19 @@ const elements = [
 ];
 
 const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState<ProjectProps | null>(null);
+  const [opened, { open, close }] = useDisclosure(false);
+
+  const handleOpenDeleteModal = (project: ProjectProps) => {
+    setSelectedProject(project);
+    open();
+  };
+
+  const handleDelete = () => {
+    console.log("Deleting project:", selectedProject);
+    close();
+  };
+
   const rows = elements.map((element) => (
     <Table.Tr key={element.id}>
       <Table.Td>{element.title}</Table.Td>
@@ -81,7 +105,7 @@ const Projects = () => {
         >
           <IconEdit />
         </Link>
-        <IconSquareX />
+        <IconSquareX onClick={() => handleOpenDeleteModal(element)} style={{ cursor: "pointer" }} />
       </Table.Td>
     </Table.Tr>
   ));
@@ -103,6 +127,16 @@ const Projects = () => {
             <Table.Tbody>{rows}</Table.Tbody>
         </Table>
       </Table.ScrollContainer>
+      
+      {selectedProject && (
+        <DeleteModal
+          name={selectedProject.title}
+          opened={opened}
+          close={close}
+          onDelete={handleDelete}
+        />
+      )}
+
     </div>
   );
 };
