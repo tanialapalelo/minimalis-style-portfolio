@@ -19,6 +19,7 @@ export function Project() {
     title: "Project A",
     description: "This is a project",
     url: "https://example.com/A",
+    codeUrl: "https://github.com/A",
     imageUrl: "/assets/images/portfolio.png",
     is_featured: true,
   };
@@ -27,6 +28,7 @@ export function Project() {
     initialValues: {
       title: result.title || "",
       url: result.url || "",
+      codeUrl: result.url || "",
       description: result.description || "",
       is_featured: result.is_featured || false,
       imageUrl: result.imageUrl || "",
@@ -34,6 +36,7 @@ export function Project() {
     validate: {
       title: (value) => (value.trim().length < 2 ? "Title is too short" : null),
       url: (value) => (value.trim().length < 2 ? "URL is too short" : null),
+      codeUrl: (value) => (value.trim().length < 2 ? "URL is too short" : null),
       description: (value) =>
         value.trim().length < 2 ? "Description is too short" : null,
       is_featured: (value) =>
@@ -68,6 +71,12 @@ export function Project() {
         />
       </SimpleGrid>
 
+      <TextInput
+          label="Code Url"
+          placeholder="Code Url"
+          name="codeUrl"
+          {...form.getInputProps("codeUrl")}
+        />
       <Checkbox
         label="Featured"
         mt="md"
