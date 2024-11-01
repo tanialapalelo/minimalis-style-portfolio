@@ -13,25 +13,22 @@ import { useForm } from "@mantine/form";
 import { IconEdit } from "@tabler/icons-react";
 import Image from "next/image";
 
-export function Project() {
-  const result = {
-    id: 1,
-    title: "Project A",
-    description: "This is a project",
-    url: "https://example.com/A",
-    codeUrl: "https://github.com/A",
-    imageUrl: "/assets/images/portfolio.png",
-    is_featured: true,
-  };
+// Type definition for props
+interface ProjectProps {
+  projectDetail: string | null;
+}
+
+export function Project({ projectDetail }: ProjectProps) {  
+  const parsedProjectDetail = projectDetail && JSON.parse(projectDetail || "");
 
   const form = useForm({
     initialValues: {
-      title: result.title || "",
-      url: result.url || "",
-      codeUrl: result.url || "",
-      description: result.description || "",
-      is_featured: result.is_featured || false,
-      imageUrl: result.imageUrl || "",
+      title: parsedProjectDetail.title || "",
+      url: parsedProjectDetail.url || "",
+      codeUrl: parsedProjectDetail.url || "",
+      description: parsedProjectDetail.description || "",
+      is_featured: parsedProjectDetail.is_featured || false,
+      imageUrl: parsedProjectDetail.imageUrl || "",
     },
     validate: {
       title: (value) => (value.trim().length < 2 ? "Title is too short" : null),
