@@ -11,8 +11,10 @@ const DeleteModal = ({ name, opened, close, onDelete }: DeleteModalProps) => {
   return (
     <Modal opened={opened} onClose={close} withCloseButton={false}>
       <Text>Are you sure you want to delete <span className="font-bold">{name}</span>?</Text>
-      <Button onClick={close}>Cancel</Button>
-      <Button color="red" onClick={onDelete}>Delete</Button>
+      <div className="flex">
+        <Button onClick={close}>Cancel</Button>
+        <Button color="red" onClick={onDelete}>Delete</Button>
+      </div>
     </Modal>
   );
 };

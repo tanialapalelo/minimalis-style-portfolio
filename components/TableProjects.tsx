@@ -1,15 +1,13 @@
 "use client";
 
-import { Table, Title } from "@mantine/core";
+import { Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import {
-  IconCheckbox,
-  IconEdit,
-  IconSquareX,
-} from "@tabler/icons-react";
+import { IconCheckbox, IconEdit, IconSquareX } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
+import { deleteProject } from "@/lib/actions/project.action";
+import { usePathname } from "next/navigation";
 
 interface ProjectProps {
   id: string;
@@ -26,16 +24,21 @@ interface TableProjectsProps {
 }
 
 const TableProjects: React.FC<TableProjectsProps> = ({ elements }) => {
-  const [selectedProject, setSelectedProject] = useState<ProjectProps | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectProps | null>(
+    null
+  );
   const [opened, { open, close }] = useDisclosure(false);
+
+  const pathname = usePathname();
 
   const handleOpenDeleteModal = (project: ProjectProps) => {
     setSelectedProject(project);
     open();
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     console.log("Deleting project:", selectedProject);
+    await deleteProject({ projectId: selectedProject!.id, path: pathname });
     close();
   };
 
@@ -47,34 +50,35 @@ const TableProjects: React.FC<TableProjectsProps> = ({ elements }) => {
       <Table.Td>{element.isFeatured && <IconCheckbox />}</Table.Td>
       <Table.Td className="flex">
         <Link
-          href={`/admin/projects/${element.id}`}
+          href={`/admin/project/${element.id}`}
           className="flex items-center justify-start gap-1"
         >
           <IconEdit />
         </Link>
-        <IconSquareX onClick={() => handleOpenDeleteModal(element)} style={{ cursor: "pointer" }} />
+        <IconSquareX
+          onClick={() => handleOpenDeleteModal(element)}
+          style={{ cursor: "pointer" }}
+        />
       </Table.Td>
     </Table.Tr>
   ));
   return (
-    <div>
-      <Title order={2} mb={"md"}>List of Projects</Title>
-
+    <>
       <Table.ScrollContainer minWidth={500}>
         <Table striped highlightOnHover withTableBorder withColumnBorders>
-            <Table.Thead>
+          <Table.Thead>
             <Table.Tr>
-                <Table.Th>Title</Table.Th>
-                <Table.Th>Description</Table.Th>
-                <Table.Th>Url</Table.Th>
-                <Table.Th>Is Featured</Table.Th>
-                <Table.Th>Action</Table.Th>
+              <Table.Th>Title</Table.Th>
+              <Table.Th>Description</Table.Th>
+              <Table.Th>Url</Table.Th>
+              <Table.Th>Is Featured</Table.Th>
+              <Table.Th>Action</Table.Th>
             </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>{rows}</Table.Tbody>
+          </Table.Thead>
+          <Table.Tbody>{rows}</Table.Tbody>
         </Table>
       </Table.ScrollContainer>
-      
+
       {selectedProject && (
         <DeleteModal
           name={selectedProject.title}
@@ -83,8 +87,7 @@ const TableProjects: React.FC<TableProjectsProps> = ({ elements }) => {
           onDelete={handleDelete}
         />
       )}
-
-    </div>
+    </>
   );
 };
 

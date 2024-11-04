@@ -5,7 +5,8 @@ export const navigationOption = [
 
 export const adminNavOption = [
     {value: 'Home', description: 'Welcome to my admin homepage', icon: '', path: '/admin'},
-    {value: 'Projects', description: 'View all projects', icon: '', path: '/admin/projects'},
+    {value: 'Project', description: 'View & maintain your project', icon: '', path: '/admin/project'},
+    {value: 'Work Experience', description: 'View & maintain your work experience', icon: '', path: '/admin/work-experience'},
 ]
 
 export const specialties = [

@@ -7,7 +7,7 @@ const Page = async ({ params }: any) => {
   const result = await getProjectById(params.id);
   return (
     <div>
-      <Link href="/admin/projects">
+      <Link href="/admin/project">
         <Button color="gray" variant="filled">Back</Button>
       </Link>
       <Project projectDetail={JSON.stringify(result)} />

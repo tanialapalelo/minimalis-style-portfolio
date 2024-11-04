@@ -1,7 +1,7 @@
 "use server";
 
 import { connectToDatabase } from "./mongoose";
-import { CreateProjectParams, EditProjectParams } from "./shared.types";
+import { CreateProjectParams, DeleteProjectParams, EditProjectParams } from "./shared.types";
 import Project from "@/database/project.model";
 import { revalidatePath } from "next/cache";
 
@@ -49,7 +49,7 @@ export async function createProject(params: CreateProjectParams) {
     // create the question, by calling the model but not parsing all the parameters because there's an extra work for tags
     await Project.create(params);
 
-    revalidatePath("/admin/projects");
+    revalidatePath("/admin/project");
   } catch (error) {
     console.log(error);
     throw error;
@@ -84,6 +84,18 @@ export async function editProject(params: EditProjectParams) {
     console.log("project di db utk update:", project);
     await project.save();
 
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function deleteProject(params: DeleteProjectParams) {
+  try {
+    connectToDatabase();
+    const {projectId, path} = params;
+    await Project.deleteOne({ _id: projectId });
     revalidatePath(path);
   } catch (error) {
     console.log(error);
