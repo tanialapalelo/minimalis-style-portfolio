@@ -1,4 +1,5 @@
 "use client";
+import { createProject, editProject } from "@/lib/actions/project.action";
 import { UploadDropzone } from "@/utils/uploadthing";
 import {
   TextInput,
@@ -12,23 +13,28 @@ import {
 import { useForm } from "@mantine/form";
 import { IconEdit } from "@tabler/icons-react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
-// Type definition for props
 interface ProjectProps {
-  projectDetail: string | null;
+  type?: string;
+  projectDetail?: string;
 }
 
-export function Project({ projectDetail }: ProjectProps) {  
+export function Project({ type, projectDetail }: ProjectProps) {
   const parsedProjectDetail = projectDetail && JSON.parse(projectDetail || "");
 
+  const pathname = usePathname(); // to know which url are we on now
+  const router = useRouter();
+
   const form = useForm({
+    mode: "uncontrolled",
     initialValues: {
-      title: parsedProjectDetail.title || "",
-      url: parsedProjectDetail.url || "",
-      codeUrl: parsedProjectDetail.url || "",
-      description: parsedProjectDetail.description || "",
-      is_featured: parsedProjectDetail.is_featured || false,
-      imageUrl: parsedProjectDetail.imageUrl || "",
+      title: parsedProjectDetail?.title || "",
+      url: parsedProjectDetail?.url || "",
+      codeUrl: parsedProjectDetail?.url || "",
+      description: parsedProjectDetail?.description || "",
+      is_featured: parsedProjectDetail?.isFeatured || false,
+      imageUrl: parsedProjectDetail?.imageUrl || "/assets/images/portfolio.png",
     },
     validate: {
       title: (value) => (value.trim().length < 2 ? "Title is too short" : null),
@@ -43,16 +49,37 @@ export function Project({ projectDetail }: ProjectProps) {
     },
   });
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (form.validate()) {
-      // Handle form submission here
-      console.log("Form values:", form.values);
+  const handleSubmit = async (values: typeof form.values) => {
+    console.log("Form values:", values);
+    if (type === "edit") {
+      await editProject({
+        projectId: parsedProjectDetail._id,
+        title: values.title,
+        description: values.description,
+        url: values.url,
+        codeUrl: values.codeUrl,
+        imageUrl: values.imageUrl,
+        isFeatured: values.is_featured,
+        path: pathname,
+      });
+      router.push(`/admin/projects/${parsedProjectDetail._id}`);
+    }
+    else {
+      await createProject({
+        title: values.title,
+        description: values.description,
+        url: values.url,
+        codeUrl: values.codeUrl,
+        imageUrl: values.imageUrl,
+        isFeatured: values.is_featured,
+        path: pathname,
+      });
+      router.push('/admin/projects/');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={form.onSubmit(handleSubmit)}>
       <SimpleGrid cols={{ base: 1, sm: 2 }}>
         <TextInput
           label="Title"
@@ -69,11 +96,11 @@ export function Project({ projectDetail }: ProjectProps) {
       </SimpleGrid>
 
       <TextInput
-          label="Code Url"
-          placeholder="Code Url"
-          name="codeUrl"
-          {...form.getInputProps("codeUrl")}
-        />
+        label="Code Url"
+        placeholder="Code Url"
+        name="codeUrl"
+        {...form.getInputProps("codeUrl")}
+      />
       <Checkbox
         label="Featured"
         mt="md"
@@ -116,7 +143,7 @@ export function Project({ projectDetail }: ProjectProps) {
         <div className="col-span-6 sm:col-span-4 shadow">
           <Image
             src={form.values.imageUrl}
-            alt="productImage"
+            alt="projectImage"
             width="1000"
             height="100"
             className="object-cover w-full h-[250px]"

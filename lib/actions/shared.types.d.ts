@@ -11,3 +11,15 @@ export interface CreateProjectParams {
   isFeatured: boolean;
   path: string;
 }
+
+export interface EditProjectParams {
+  projectId: string;
+  title: string;
+  description: string;
+  url: string;
+  codeUrl: string;
+  imageUrl: string;
+  isFeatured: boolean;
+  path: string;
+}
+
