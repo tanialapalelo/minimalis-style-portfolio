@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Handlee } from "next/font/google";
@@ -25,10 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript defaultColorScheme="auto" />
+        <ColorSchemeScript defaultColorScheme="auto"/>
       </head>
       <body className={`${handlee.variable} `}>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider defaultColorScheme="auto">{children}</MantineProvider>
       </body>
     </html>
   );
