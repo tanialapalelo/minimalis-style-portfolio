@@ -23,9 +23,7 @@ const Projects = async () => {
         <Title order={2} mb={"md"}>
           List of Projects
         </Title>
-        <Link href="/admin/project/add-project">
-          <Button>Add Project</Button>
-        </Link>
+        <Button component={Link} href="/admin/project/add-project">Add Project</Button>
       </div>
 
       <TableProjects elements={projects} />

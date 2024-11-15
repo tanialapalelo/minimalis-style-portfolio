@@ -6,7 +6,6 @@ import { IconEdit, IconSquareX } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
-import { deleteProject } from "@/lib/actions/project.action";
 import { usePathname } from "next/navigation";
 import { getJoinedDate } from "@/lib/utils";
 
@@ -38,7 +37,7 @@ const TableWorkExperience: React.FC<TableWorkExperienceProps> = ({ elements }) =
 
   const handleDelete = async () => {
     console.log("Deleting project:", selectedWorkExp);
-    await deleteProject({ projectId: selectedWorkExp!.id, path: pathname });
+    // await deleteProject({ projectId: selectedWorkExp!.id, path: pathname });
     close();
   };
 

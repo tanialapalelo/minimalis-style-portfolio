@@ -7,10 +7,11 @@ const Page = async ({ params }: any) => {
   const result = await getWorkExperienceById(params.id);
   return (
     <div>
-      <Link href="/admin/project">
-        <Button color="gray" variant="filled">Back</Button>
-      </Link>
-      <WorkExperience projectDetail={JSON.stringify(result)} />
+      <Button component={Link} href="/admin/project" color="grape">
+        Back
+      </Button>
+
+      <WorkExperience workExpDetail={JSON.stringify(result)} />
     </div>
   );
 };

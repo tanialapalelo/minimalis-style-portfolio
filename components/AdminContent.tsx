@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const AdminContent = ({ children }) => {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, { toggle }] = useDisclosure(); // toggle Sets opened to true if it was false and vice versa
   const [active, setActive] = useState(0);
   const pathname = usePathname();
 
@@ -22,8 +22,8 @@ const AdminContent = ({ children }) => {
       header={{ height: 60 }}
       navbar={{
         width: 300,
-        breakpoint: "sm",
-        collapsed: { mobile: !opened },
+        breakpoint: "sm", //  Breakpoint at which size should switch to mobile mode (when enter sm then navbar will colla)
+        collapsed: { mobile: !opened }, // If section is collapsed, it's hidden from viewport
       }}
       padding="md"
     >

@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@mantine/core": "^7.13.2",
+    "@mantine/dates": "^7.13.4",
     "@mantine/form": "^7.13.3",
     "@mantine/hooks": "^7.13.2",
     "@tabler/icons-react": "^3.19.0",
     "@uploadthing/react": "^7.1.0",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "framer-motion": "^11.11.7",
     "mini-svg-data-uri": "^1.4.4",
     "mongodb": "^6.10.0",
