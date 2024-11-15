@@ -55,7 +55,7 @@ export function WorkExperience({ type, workExpDetail }: WorkExpProps) {
         endDate: values.endDate,
         path: pathname,
       });
-      router.push(`/admin/work-experience/${parsedWorkExpDetail._id}`);
+      router.push(`/admin/work-experience`);
     } else {
       await createWorkExperience({
         jobTitle: values.jobTitle,

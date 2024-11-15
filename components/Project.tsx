@@ -62,7 +62,7 @@ export function Project({ type, projectDetail }: ProjectProps) {
         isFeatured: values.is_featured,
         path: pathname,
       });
-      router.push(`/admin/project/${parsedProjectDetail._id}`);
+      router.push(`/admin/project/`);
     }
     else {
       await createProject({

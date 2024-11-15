@@ -8,7 +8,7 @@ const Page = async ({ params }: any) => {
   return (
     <div>
       <Button component={Link} href="/admin/project" color="grape">Back</Button>
-      <Project projectDetail={JSON.stringify(result)} />
+      <Project type="edit" projectDetail={JSON.stringify(result)} />
     </div>
   );
 };

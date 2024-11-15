@@ -11,7 +11,7 @@ const Page = async ({ params }: any) => {
         Back
       </Button>
 
-      <WorkExperience workExpDetail={JSON.stringify(result)} />
+      <WorkExperience type="edit" workExpDetail={JSON.stringify(result)} />
     </div>
   );
 };
