@@ -13,14 +13,6 @@ const AdminContent = ({ children }) => {
   const [active, setActive] = useState(0);
   const pathname = usePathname();
 
-  // Ensure that hydration mismatch is avoided
-  const [hydrated, setHydrated] = useState(false);
-  const computedColorScheme = useComputedColorScheme("light", { getInitialValueInEffect: true });
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
   return (
     <AppShell
       header={{ height: 60 }}
@@ -59,7 +51,6 @@ const AdminContent = ({ children }) => {
       </AppShell.Navbar>
 
       <AppShell.Main
-
       >
         {children}
       </AppShell.Main>

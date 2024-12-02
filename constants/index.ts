@@ -4,10 +4,11 @@ export const navigationOption = [
 ]
 
 export const adminNavOption = [
-    {value: 'Profile', description: 'Maintain your profile', icon: '', path: '/admin'},
+    {value: 'Home', description: 'Welcome to admin homepage', icon: '', path: '/admin'},
+    {value: 'Profile', description: 'Maintain your profile', icon: '', path: '/admin/profile'},
     {value: 'Project', description: 'View & maintain your project', icon: '', path: '/admin/project'},
     {value: 'Work Experience', description: 'View & maintain your work experience', icon: '', path: '/admin/work-experience'},
-    {value: 'Contact Submission', description: 'See all contact submissions', icon: '', path: '/admin/contact-submission'},
+    {value: 'Contact Submission', description: 'See all your contact submission', icon: '', path: '/admin/contact-submission'},
 ]
 
 export const specialties = [
@@ -25,7 +26,7 @@ export const featured = [
     {id:5, name: 'Jewelry Website', image: '/assets/images/finance-landing-page.png'},
 ]
 
-export const links = [
+export const footerLinks = [
     { link: '#', label: 'Contact' },
     { link: '#', label: 'Privacy' },
     { link: '#', label: 'Blog' },
