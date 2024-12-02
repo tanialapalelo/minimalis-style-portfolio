@@ -2,28 +2,32 @@
 
 import { AppShell, Burger, Container, Group, NavLink, useComputedColorScheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import Image from "next/image";
-
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Theme from "./Theme";
 import { adminNavOption } from "@/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const AdminContent = ({ children }) => {
-  const [opened, { toggle }] = useDisclosure(); // toggle Sets opened to true if it was false and vice versa
+  const [opened, { toggle }] = useDisclosure();
   const [active, setActive] = useState(0);
   const pathname = usePathname();
 
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  // Ensure that hydration mismatch is avoided
+  const [hydrated, setHydrated] = useState(false);
+  const computedColorScheme = useComputedColorScheme("light", { getInitialValueInEffect: true });
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   return (
     <AppShell
       header={{ height: 60 }}
       navbar={{
         width: 300,
-        breakpoint: "sm", //  Breakpoint at which size should switch to mobile mode (when enter sm then navbar will colla)
-        collapsed: { mobile: !opened }, // If section is collapsed, it's hidden from viewport
+        breakpoint: "sm",
+        collapsed: { mobile: !opened },
       }}
       padding="md"
     >
@@ -40,22 +44,25 @@ const AdminContent = ({ children }) => {
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        {adminNavOption
-          .map((navOption, index) => (
-            <NavLink
-              href={navOption.path}
-              key={navOption.value}
-              active={navOption.path === pathname}
-              label={navOption.value}
-              description={navOption.description}
-              onClick={() => setActive(index)}
-              color="dark"
-              variant="filled"
-
-            />
-          ))}
+        {adminNavOption.map((navOption, index) => (
+          <NavLink
+            href={navOption.path}
+            key={navOption.value}
+            active={navOption.path === pathname}
+            label={navOption.value}
+            description={navOption.description}
+            onClick={() => setActive(index)}
+            color="dark"
+            variant="filled"
+          />
+        ))}
       </AppShell.Navbar>
-      <AppShell.Main className={`${computedColorScheme === 'light' ? 'bg-dot-black/[0.5]' : 'bg-dot-white/[0.5]'}`}>{children}</AppShell.Main>
+
+      <AppShell.Main
+
+      >
+        {children}
+      </AppShell.Main>
     </AppShell>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { Table } from "@mantine/core";
+import { Button, Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconCheckbox, IconEdit, IconSquareX } from "@tabler/icons-react";
 import Link from "next/link";
@@ -48,24 +48,16 @@ const TableProjects: React.FC<TableProjectsProps> = ({ elements }) => {
       <Table.Td>{element.description}</Table.Td>
       <Table.Td>{element.url}</Table.Td>
       <Table.Td>{element.isFeatured && <IconCheckbox />}</Table.Td>
-      <Table.Td className="flex">
-        <Link
-          href={`/admin/project/${element.id}`}
-          className="flex items-center justify-start gap-1"
-        >
-          <IconEdit />
-        </Link>
-        <IconSquareX
-          onClick={() => handleOpenDeleteModal(element)}
-          style={{ cursor: "pointer" }}
-        />
+      <Table.Td>
+        <Button component={Link} href={`/admin/project/${element.id}`}><IconEdit size={16} /></Button>
+        <Button onClick={() => handleOpenDeleteModal(element)} color="red"><IconSquareX size={16} /></Button>
       </Table.Td>
     </Table.Tr>
   ));
   return (
     <>
       <Table.ScrollContainer minWidth={500}>
-        <Table striped highlightOnHover withTableBorder withColumnBorders>
+        <Table striped withTableBorder withColumnBorders>
           <Table.Thead>
             <Table.Tr>
               <Table.Th>Title</Table.Th>

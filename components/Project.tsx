@@ -34,7 +34,7 @@ export function Project({ type, projectDetail }: ProjectProps) {
       codeUrl: parsedProjectDetail?.url || "",
       description: parsedProjectDetail?.description || "",
       is_featured: parsedProjectDetail?.isFeatured || false,
-      imageUrl: parsedProjectDetail?.imageUrl || "/assets/images/portfolio.png",
+      imageUrl: parsedProjectDetail?.imageUrl || "",
     },
     validate: {
       title: (value) => (value.trim().length < 2 ? "Title is too short" : null),
@@ -122,20 +122,17 @@ export function Project({ type, projectDetail }: ProjectProps) {
         {form.values.imageUrl && (
           <Button
             leftSection={<IconEdit size={14} />}
-            onClick={() => form.setFieldValue("imageUrl", "")}
+            onClick={() => {
+              form.setFieldValue("imageUrl", "");
+              setTimeout(() => {
+                console.log("Image URL after clearing:", form.values.imageUrl);
+              }, 0);
+            }}            
             size="md"
             my={"md"}
           >
             Edit
           </Button>
-
-          // <button
-          //   type="button"
-          //   onClick={() => form.setFieldValue("imageUrl", "")}
-          //   className="py-1 px-3 focus:outline-none hover:bg-gray-200"
-          // >
-          //   + edit image
-          // </button>
         )}
       </div>
 

@@ -4,9 +4,10 @@ export const navigationOption = [
 ]
 
 export const adminNavOption = [
-    {value: 'Home', description: 'Welcome to my admin homepage', icon: '', path: '/admin'},
+    {value: 'Profile', description: 'Maintain your profile', icon: '', path: '/admin'},
     {value: 'Project', description: 'View & maintain your project', icon: '', path: '/admin/project'},
     {value: 'Work Experience', description: 'View & maintain your work experience', icon: '', path: '/admin/work-experience'},
+    {value: 'Contact Submission', description: 'See all contact submissions', icon: '', path: '/admin/contact-submission'},
 ]
 
 export const specialties = [
